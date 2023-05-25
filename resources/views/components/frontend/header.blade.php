@@ -4,7 +4,7 @@
         <div class="flex flex-stretch items-center">
           <div class="w-56 items-center flex">
             <img
-              src="images/content/logo.png"
+              src="/frontend/images/content/logo.png"
               alt="Luxspace | Fulfill your house with beautiful furniture"
             />
           </div>
