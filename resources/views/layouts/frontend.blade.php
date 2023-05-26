@@ -39,6 +39,7 @@
     </svg> -->
     <!-- END: LOAD SVG  -->
 
+    @yield('script')
     <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
     <script>
       window.ga = function () {
