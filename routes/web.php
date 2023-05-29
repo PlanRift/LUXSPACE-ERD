@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontEndController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,12 +21,8 @@ Route::get('/details/{slug}', [FrontEndController::class, 'details'])->name('det
 Route::get('/cart', [FrontEndController::class, 'cart'])->name('cart');
 Route::get('/checkout/success', [FrontEndController::class, 'success'])->name('success');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified', 'IsAdmin'])->name('dashboard.')->prefix('dashboard')->group(function(){
+    Route::get('/', [DashboardController::class, 'index'])->name('index');
+
+    Route::resource('product', ProductController::class);
 });
