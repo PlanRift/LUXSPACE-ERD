@@ -40,7 +40,7 @@
                     <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-5 text-red-700">
                         <p>
                             <ul>
-                                @foreach ($error->all() as $error)
+                                @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
@@ -53,13 +53,13 @@
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Name</label>
-                            <input type="text" placeholder="Product Name" value="{{ old('name') }}" name="name" class="block w-full text-black border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                            <input type="text" placeholder="Product Name" value="{{ old('name') }}" name="title" class="block w-full text-black border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Description</label>
-                            <textarea id="description" name="name" class="block w-full bg-gray-700 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                            <textarea id="description" name="description" class="block w-full bg-gray-700 text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                                 {!! old('description') !!}</textarea>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Qty</label>
-                            <input type="number" placeholder="Product Quantity" value="{{ old('qty') }}" name="Qty" class="block w-full text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                            <input type="number" placeholder="Product Quantity" value="{{ old('qty') }}" name="qty" class="block w-full text-gray-700 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                         </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
