@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Products;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
 {
@@ -11,6 +13,14 @@ class ProductController extends Controller
      */
     public function index()
     {
+
+        if(request()->ajax()){
+            $query = Products::query();
+            return DataTables::of($query)->editColumn('price', function($item){
+                return number_format($item->price);
+            })->make();
+        }
+
         return view('pages.dashboard.product.index');
     }
 
@@ -19,7 +29,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.dashboard.product.create');
     }
 
     /**

@@ -139,7 +139,7 @@
     @stack('modals')
 
     @livewireScripts
-
+    <script src="https://cdn.tailwindcss.com"></script> 
     {{ $script ?? '' }}
 </body>
 
