@@ -16,11 +16,18 @@ class ProductController extends Controller
     public function index()
     {
 
-        if(request()->ajax()){
+        if (request()->ajax()) {
             $query = Products::query();
-            return DataTables::of($query)->editColumn('price', function($item){
-                return number_format($item->price);
-            })->make();
+            return DataTables::of($query)
+                ->addColumn('action', function ($item) {
+                    return '
+            <a href="' . route('dashboard.product.edit', $item->id) . '" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-lg">
+            Edit
+            </a>
+            ';
+                })->editColumn('price', function ($item) {
+                    return number_format($item->price);
+                })->rawColumns(['action'])->make();
         }
 
         return view('pages.dashboard.product.index');
@@ -47,7 +54,7 @@ class ProductController extends Controller
         return redirect()->route('dashboard.product.index');
     }
 
-    
+
 
     /**
      * Display the specified resource.
@@ -60,17 +67,22 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Products $product)
     {
-        //
+        return view('pages.dashboard.product.edit',compact('product'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Products $product)
     {
-        //
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->title);
+
+        $product->update($data);
+
+        return redirect()->route('dashboard.product.index');
     }
 
     /**
