@@ -21,9 +21,8 @@ class ProductController extends Controller
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
                     return '
-            <a href="' . route('dashboard.product.edit', $item->id) . '" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-lg">
-            Edit
-            </a>
+                    <a href="' . route('dashboard.product.gallery.index', $item->id) . '" class="bg-orange-500 hover:bg-pink-700 text-white font-bold mx-2 py-2 px-4 rounded shadow-lg">Gallery</a>
+            <a href="' . route('dashboard.product.edit', $item->id) . '" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-lg">Edit</a>
             <form class="inline-block" method="POST" action="' . route('dashboard.product.destroy', $item->id) . '">
                     ' . method_field('delete') . csrf_field() . '
                     <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold ms-1 py-1.5 px-3 rounded shadow-lg">

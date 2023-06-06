@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FrontEndController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductGalleryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,4 +26,5 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified', '
     Route::get('/', [DashboardController::class, 'index'])->name('index');
 
     Route::resource('product', ProductController::class);
+    Route::resource('product.gallery', ProductGalleryController::class)->shallow()->only(['index', 'create', 'store', 'destroy']);
 });
