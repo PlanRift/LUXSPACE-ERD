@@ -17,11 +17,11 @@ class ProductGalleryController extends Controller
     public function index(Products $product)
     {
         if (request()->ajax()) {
-            $query = products_gallery::query();
+            $query = products_gallery::query()->where('product_id', $product->id);
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
                     return '
-            <form class="inline-block" method="POST" action="' . route('dashboard.product.destroy', $item->id) . '">
+            <form class="inline-block" method="POST" action="' . route('dashboard.gallery.destroy', $item->id) . '">
                     ' . method_field('delete') . csrf_field() . '
                     <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold ms-1 py-1.5 px-3 rounded shadow-lg">
                     Delete
@@ -94,8 +94,10 @@ class ProductGalleryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(products_gallery $gallery)
     {
-        //
+       $gallery->delete();
+       
+       return redirect()->route('dashboard.product.gallery.index',$gallery->product_id);
     }
 }
