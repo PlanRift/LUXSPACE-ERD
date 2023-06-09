@@ -6,6 +6,7 @@ use App\Http\Requests\TransactionRequest;
 use App\Models\transactionItems;
 use App\Models\transactions;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class TransactionController extends Controller
@@ -13,6 +14,8 @@ class TransactionController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+
     public function index()
     {
         if (request()->ajax()) {
